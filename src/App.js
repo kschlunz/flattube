@@ -7,14 +7,31 @@ import './App.css';
 class App extends Component {
 
   state = {
-    shows: []
+    shows: [],
+    textTyped: ""
   }
 
+  componentDidMount = () => {
+
+    Adapter.getShows().then(res => {this.setState({
+      shows: res
+    })
+  })
+
+  }
+
+  handleChange = (e) => {
+    this.setState({textTyped: e.target.value})
+  }
+
+
   render = () => {
+    let allShows = this.state.shows
+    allShows = allShows.filter( (show) => {return show.type.toLowerCase().includes(this.state.textTyped.toLowerCase())})
     return (
       <div className="App">
-        <TVShowList />
-        <Filter />
+        <TVShowList shows = {allShows} />
+        <Filter handleChange = {this.handleChange} />
       </div>
     );
   }

@@ -2,17 +2,18 @@ import React, { Component } from 'react';
 
 class Filter extends Component {
 
-  //Returns a list of show types (How can we use this for a filter?)
-  // listOfShowTypes = () => {
-  //   return this.props.shows.map((s)=> {
-  //     return s.type
-  //   }).unique()
-  // }
+  // Returns a list of show types (How can we use this for a filter?)
+  listOfShowTypes = () => {
+    return this.props.shows.map((s)=> {
+      return s.type
+    }).unique()
+  }
+
 
   render = () => {
     return (
       <div className="filter">
-        Your code for your Filter
+        <input type = "text" placeholder = "Search by show type" onChange={this.props.handleChange} />
       </div>
     );
   }
